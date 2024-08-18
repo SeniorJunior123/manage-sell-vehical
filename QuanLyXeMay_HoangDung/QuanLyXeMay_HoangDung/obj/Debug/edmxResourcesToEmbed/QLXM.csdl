@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLXMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ChiTietPhieuNhap">
+    <Key>
+      <PropertyRef Name="MaCTPN" />
+    </Key>
+    <Property Name="MaCTPN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaPN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="DonGia" Type="Double" />
+    <Property Name="ThanhTien" Type="Double" />
+    <NavigationProperty Name="PhieuNhap" Relationship="Self.FK_ChiTietPhieuNhap_PhieuNhap" FromRole="ChiTietPhieuNhap" ToRole="PhieuNhap" />
+    <NavigationProperty Name="Xe" Relationship="QLXMModel.FK_ChiTietPhieuNhap_Xe" FromRole="ChiTietPhieuNhap" ToRole="Xe" />
+  </EntityType>
+  <EntityType Name="ChiTietXe">
+    <Key>
+      <PropertyRef Name="MaCT" />
+    </Key>
+    <Property Name="MaCT" Type="Int32" Nullable="false" />
+    <Property Name="MaXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoKhung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoMay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="MaPN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaPX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PhieuNhap" Relationship="Self.FK_ChiTietXe_PhieuNhap" FromRole="ChiTietXe" ToRole="PhieuNhap" />
+    <NavigationProperty Name="PhieuXuat" Relationship="Self.FK_ChiTietXe_PhieuXuat" FromRole="ChiTietXe" ToRole="PhieuXuat" />
+    <NavigationProperty Name="Xe" Relationship="QLXMModel.FK_ChiTietXe_Xe" FromRole="ChiTietXe" ToRole="Xe" />
+  </EntityType>
+  <EntityType Name="DangNhap">
+    <Key>
+      <PropertyRef Name="TaiKhoan" />
+    </Key>
+    <Property Name="TaiKhoan" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="MatKhau" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="TenDayDu" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="Quyen" Type="Int32" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PhieuXuats" Relationship="Self.FK_PhieuXuat_KhachHang" FromRole="KhachHang" ToRole="PhieuXuat" />
+  </EntityType>
+  <EntityType Name="NhaCungCap">
+    <Key>
+      <PropertyRef Name="MaNCC" />
+    </Key>
+    <Property Name="MaNCC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenNCC" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PhieuNhaps" Relationship="Self.FK_PhieuNhap_NhaCungCap" FromRole="NhaCungCap" ToRole="PhieuNhap" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PhieuNhaps" Relationship="Self.FK_PhieuNhap_NhanVien" FromRole="NhanVien" ToRole="PhieuNhap" />
+    <NavigationProperty Name="PhieuXuats" Relationship="Self.FK_PhieuXuat_NhanVien" FromRole="NhanVien" ToRole="PhieuXuat" />
+  </EntityType>
+  <EntityType Name="PhieuNhap">
+    <Key>
+      <PropertyRef Name="MaPN" />
+    </Key>
+    <Property Name="MaPN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaNCC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayNhap" Type="DateTime" Precision="0" />
+    <Property Name="TongTien" Type="Double" />
+    <NavigationProperty Name="ChiTietPhieuNhaps" Relationship="Self.FK_ChiTietPhieuNhap_PhieuNhap" FromRole="PhieuNhap" ToRole="ChiTietPhieuNhap" />
+    <NavigationProperty Name="ChiTietXes" Relationship="Self.FK_ChiTietXe_PhieuNhap" FromRole="PhieuNhap" ToRole="ChiTietXe" />
+    <NavigationProperty Name="NhaCungCap" Relationship="Self.FK_PhieuNhap_NhaCungCap" FromRole="PhieuNhap" ToRole="NhaCungCap" />
+    <NavigationProperty Name="NhanVien" Relationship="Self.FK_PhieuNhap_NhanVien" FromRole="PhieuNhap" ToRole="NhanVien" />
+  </EntityType>
+  <EntityType Name="PhieuXuat">
+    <Key>
+      <PropertyRef Name="MaPX" />
+    </Key>
+    <Property Name="MaPX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaKH" Type="Int32" />
+    <Property Name="NgayXuat" Type="DateTime" Precision="0" />
+    <Property Name="TongTien" Type="Double" />
+    <NavigationProperty Name="ChiTietXes" Relationship="Self.FK_ChiTietXe_PhieuXuat" FromRole="PhieuXuat" ToRole="ChiTietXe" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK_PhieuXuat_KhachHang" FromRole="PhieuXuat" ToRole="KhachHang" />
+    <NavigationProperty Name="NhanVien" Relationship="Self.FK_PhieuXuat_NhanVien" FromRole="PhieuXuat" ToRole="NhanVien" />
+    <NavigationProperty Name="ChiTietPhieuXuats" Relationship="QLXMModel.FK_ChiTietPhieuXuat_PhieuXuat1" FromRole="PhieuXuat" ToRole="ChiTietPhieuXuat" />
+  </EntityType>
+  <Association Name="FK_ChiTietPhieuNhap_PhieuNhap">
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="0..1" />
+    <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuNhap">
+        <PropertyRef Name="MaPN" />
+      </Principal>
+      <Dependent Role="ChiTietPhieuNhap">
+        <PropertyRef Name="MaPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietXe_PhieuNhap">
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="0..1" />
+    <End Role="ChiTietXe" Type="Self.ChiTietXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuNhap">
+        <PropertyRef Name="MaPN" />
+      </Principal>
+      <Dependent Role="ChiTietXe">
+        <PropertyRef Name="MaPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietXe_PhieuXuat">
+    <End Role="PhieuXuat" Type="Self.PhieuXuat" Multiplicity="0..1" />
+    <End Role="ChiTietXe" Type="Self.ChiTietXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuXuat">
+        <PropertyRef Name="MaPX" />
+      </Principal>
+      <Dependent Role="ChiTietXe">
+        <PropertyRef Name="MaPX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuXuat_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="PhieuXuat" Type="Self.PhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="PhieuXuat">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuNhap_NhaCungCap">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="0..1" />
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="MaNCC" />
+      </Principal>
+      <Dependent Role="PhieuNhap">
+        <PropertyRef Name="MaNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuNhap_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PhieuNhap">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuXuat_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="PhieuXuat" Type="Self.PhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PhieuXuat">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLXMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ChiTietPhieuNhaps" EntityType="Self.ChiTietPhieuNhap" />
+    <EntitySet Name="ChiTietXes" EntityType="Self.ChiTietXe" />
+    <EntitySet Name="DangNhaps" EntityType="Self.DangNhap" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="NhaCungCaps" EntityType="Self.NhaCungCap" />
+    <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
+    <EntitySet Name="PhieuNhaps" EntityType="Self.PhieuNhap" />
+    <EntitySet Name="PhieuXuats" EntityType="Self.PhieuXuat" />
+    <AssociationSet Name="FK_ChiTietPhieuNhap_PhieuNhap" Association="Self.FK_ChiTietPhieuNhap_PhieuNhap">
+      <End Role="PhieuNhap" EntitySet="PhieuNhaps" />
+      <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietXe_PhieuNhap" Association="Self.FK_ChiTietXe_PhieuNhap">
+      <End Role="PhieuNhap" EntitySet="PhieuNhaps" />
+      <End Role="ChiTietXe" EntitySet="ChiTietXes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietXe_PhieuXuat" Association="Self.FK_ChiTietXe_PhieuXuat">
+      <End Role="PhieuXuat" EntitySet="PhieuXuats" />
+      <End Role="ChiTietXe" EntitySet="ChiTietXes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuXuat_KhachHang" Association="Self.FK_PhieuXuat_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="PhieuXuat" EntitySet="PhieuXuats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuNhap_NhaCungCap" Association="Self.FK_PhieuNhap_NhaCungCap">
+      <End Role="NhaCungCap" EntitySet="NhaCungCaps" />
+      <End Role="PhieuNhap" EntitySet="PhieuNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuNhap_NhanVien" Association="Self.FK_PhieuNhap_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanViens" />
+      <End Role="PhieuNhap" EntitySet="PhieuNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuXuat_NhanVien" Association="Self.FK_PhieuXuat_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanViens" />
+      <End Role="PhieuXuat" EntitySet="PhieuXuats" />
+    </AssociationSet>
+    <EntitySet Name="MauXes" EntityType="QLXMModel.MauXe" />
+    <EntitySet Name="HangXes" EntityType="QLXMModel.HangXe" />
+    <EntitySet Name="Xes" EntityType="QLXMModel.Xe" />
+    <AssociationSet Name="FK_ChiTietPhieuNhap_Xe" Association="QLXMModel.FK_ChiTietPhieuNhap_Xe">
+      <End Role="Xe" EntitySet="Xes" />
+      <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietXe_Xe" Association="QLXMModel.FK_ChiTietXe_Xe">
+      <End Role="Xe" EntitySet="Xes" />
+      <End Role="ChiTietXe" EntitySet="ChiTietXes" />
+    </AssociationSet>
+    <EntitySet Name="ChiTietPhieuXuats" EntityType="QLXMModel.ChiTietPhieuXuat" />
+    <AssociationSet Name="FK_ChiTietPhieuXuat_PhieuXuat1" Association="QLXMModel.FK_ChiTietPhieuXuat_PhieuXuat1">
+      <End Role="PhieuXuat" EntitySet="PhieuXuats" />
+      <End Role="ChiTietPhieuXuat" EntitySet="ChiTietPhieuXuats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietPhieuXuat_Xe" Association="QLXMModel.FK_ChiTietPhieuXuat_Xe">
+      <End Role="Xe" EntitySet="Xes" />
+      <End Role="ChiTietPhieuXuat" EntitySet="ChiTietPhieuXuats" />
+    </AssociationSet>
+    <EntitySet Name="viewLichSuNhaps" EntityType="QLXMModel.viewLichSuNhap" />
+    <EntitySet Name="viewLichSuXuats" EntityType="QLXMModel.viewLichSuXuat" />
+    <FunctionImport Name="timKiemLichSuNhapHang" ReturnType="Collection(QLXMModel.timKiemLichSuNhapHang_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="timKiemLichSuBanHang" ReturnType="Collection(QLXMModel.timKiemLichSuBanHang_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="timkiemTonKho" ReturnType="Collection(QLXMModel.timkiemTonKho_Result)">
+      <Parameter Name="hangXe" Mode="In" Type="String" />
+      <Parameter Name="loaiXe" Mode="In" Type="String" />
+      <Parameter Name="phanKhoi" Mode="In" Type="String" />
+      <Parameter Name="tenXe" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="MauXe">
+    <Key>
+      <PropertyRef Name="MaMau" />
+    </Key>
+    <Property Name="MaMau" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenMau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HangXe">
+    <Key>
+      <PropertyRef Name="MaHang" />
+    </Key>
+    <Property Name="MaHang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Xe">
+    <Key>
+      <PropertyRef Name="MaXe" />
+    </Key>
+    <Property Name="MaXe" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MauSac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="DonGia" Type="Double" />
+    <Property Name="PhanKhoi" Type="Int32" />
+    <Property Name="LoaiXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AnhXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HangXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ChiTietPhieuNhaps" Relationship="QLXMModel.FK_ChiTietPhieuNhap_Xe" FromRole="Xe" ToRole="ChiTietPhieuNhap" />
+    <NavigationProperty Name="ChiTietXes" Relationship="QLXMModel.FK_ChiTietXe_Xe" FromRole="Xe" ToRole="ChiTietXe" />
+    <NavigationProperty Name="ChiTietPhieuXuats" Relationship="QLXMModel.FK_ChiTietPhieuXuat_Xe" FromRole="Xe" ToRole="ChiTietPhieuXuat" />
+  </EntityType>
+  <Association Name="FK_ChiTietPhieuNhap_Xe">
+    <End Type="QLXMModel.Xe" Role="Xe" Multiplicity="0..1" />
+    <End Type="QLXMModel.ChiTietPhieuNhap" Role="ChiTietPhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="ChiTietPhieuNhap">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietXe_Xe">
+    <End Type="QLXMModel.Xe" Role="Xe" Multiplicity="0..1" />
+    <End Type="QLXMModel.ChiTietXe" Role="ChiTietXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="ChiTietXe">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ChiTietPhieuXuat">
+    <Key>
+      <PropertyRef Name="MaCTPX" />
+    </Key>
+    <Property Name="MaCTPX" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaPX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoKhung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoMay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="Double" />
+    <NavigationProperty Name="PhieuXuat" Relationship="QLXMModel.FK_ChiTietPhieuXuat_PhieuXuat1" FromRole="ChiTietPhieuXuat" ToRole="PhieuXuat" />
+    <NavigationProperty Name="Xe" Relationship="QLXMModel.FK_ChiTietPhieuXuat_Xe" FromRole="ChiTietPhieuXuat" ToRole="Xe" />
+  </EntityType>
+  <Association Name="FK_ChiTietPhieuXuat_PhieuXuat1">
+    <End Type="QLXMModel.PhieuXuat" Role="PhieuXuat" Multiplicity="0..1" />
+    <End Type="QLXMModel.ChiTietPhieuXuat" Role="ChiTietPhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuXuat">
+        <PropertyRef Name="MaPX" />
+      </Principal>
+      <Dependent Role="ChiTietPhieuXuat">
+        <PropertyRef Name="MaPX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietPhieuXuat_Xe">
+    <End Type="QLXMModel.Xe" Role="Xe" Multiplicity="0..1" />
+    <End Type="QLXMModel.ChiTietPhieuXuat" Role="ChiTietPhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="ChiTietPhieuXuat">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="viewLichSuNhap">
+    <Key>
+      <PropertyRef Name="MaPN" />
+    </Key>
+    <Property Name="MaPN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="DonGia" Type="Double" />
+    <Property Name="ThanhTien" Type="Double" />
+    <Property Name="NgayNhap" Type="DateTime" Precision="0" />
+    <Property Name="TenNCC" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="viewLichSuXuat">
+    <Key>
+      <PropertyRef Name="MaPX" />
+    </Key>
+    <Property Name="MaPX" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MauSac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoKhung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoMay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="Double" />
+    <Property Name="NgayXuat" Type="DateTime" Precision="0" />
+  </EntityType>
+  <ComplexType Name="timKiemLichSuNhapHang_Result">
+    <Property Type="String" Name="MaPN" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TenXe" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SoLuong" Nullable="true" />
+    <Property Type="Double" Name="DonGia" Nullable="true" />
+    <Property Type="Double" Name="ThanhTien" Nullable="true" />
+    <Property Type="DateTime" Name="NgayNhap" Nullable="true" />
+    <Property Type="String" Name="TenNCC" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="timKiemLichSuBanHang_Result">
+    <Property Type="String" Name="MaPX" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TenKH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TenXe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MauSac" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SoKhung" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SoMay" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="DonGia" Nullable="true" />
+    <Property Type="DateTime" Name="NgayXuat" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="timkiemTonKho_Result">
+    <Property Type="String" Name="MaXe" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TenXe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MauSac" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SoLuong" Nullable="true" />
+    <Property Type="Double" Name="DonGia" Nullable="true" />
+    <Property Type="Int32" Name="PhanKhoi" Nullable="true" />
+    <Property Type="String" Name="LoaiXe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AnhXe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HangXe" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

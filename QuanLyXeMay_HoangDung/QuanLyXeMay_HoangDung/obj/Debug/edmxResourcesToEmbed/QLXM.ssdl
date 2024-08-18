@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLXMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChiTietPhieuNhap">
+    <Key>
+      <PropertyRef Name="MaCTPN" />
+    </Key>
+    <Property Name="MaCTPN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaPN" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="DonGia" Type="float" />
+    <Property Name="ThanhTien" Type="float" />
+  </EntityType>
+  <EntityType Name="ChiTietPhieuXuat">
+    <Key>
+      <PropertyRef Name="MaCTPX" />
+    </Key>
+    <Property Name="MaCTPX" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaPX" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoKhung" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoMay" Type="nvarchar" MaxLength="50" />
+    <Property Name="DonGia" Type="float" />
+  </EntityType>
+  <EntityType Name="ChiTietXe">
+    <Key>
+      <PropertyRef Name="MaCT" />
+    </Key>
+    <Property Name="MaCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoKhung" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoMay" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="MaPN" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaPX" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DangNhap">
+    <Key>
+      <PropertyRef Name="TaiKhoan" />
+    </Key>
+    <Property Name="TaiKhoan" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+    <Property Name="TenDayDu" Type="nvarchar" MaxLength="50" />
+    <Property Name="Quyen" Type="int" />
+  </EntityType>
+  <EntityType Name="HangXe">
+    <Key>
+      <PropertyRef Name="MaHang" />
+    </Key>
+    <Property Name="MaHang" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenHang" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="50" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MauXe">
+    <Key>
+      <PropertyRef Name="MaMau" />
+    </Key>
+    <Property Name="MaMau" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenMau" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NhaCungCap">
+    <Key>
+      <PropertyRef Name="MaNCC" />
+    </Key>
+    <Property Name="MaNCC" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenNCC" Type="nvarchar" MaxLength="250" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="250" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="12" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenNV" Type="nvarchar" MaxLength="50" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="5" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="12" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="PhieuNhap">
+    <Key>
+      <PropertyRef Name="MaPN" />
+    </Key>
+    <Property Name="MaPN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaNV" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaNCC" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgayNhap" Type="date" />
+    <Property Name="TongTien" Type="float" />
+  </EntityType>
+  <EntityType Name="PhieuXuat">
+    <Key>
+      <PropertyRef Name="MaPX" />
+    </Key>
+    <Property Name="MaPX" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaNV" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaKH" Type="int" />
+    <Property Name="NgayXuat" Type="date" />
+    <Property Name="TongTien" Type="float" />
+  </EntityType>
+  <EntityType Name="Xe">
+    <Key>
+      <PropertyRef Name="MaXe" />
+    </Key>
+    <Property Name="MaXe" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="MauSac" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="DonGia" Type="float" />
+    <Property Name="PhanKhoi" Type="int" />
+    <Property Name="LoaiXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="AnhXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="HangXe" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLXM.dbo.viewLichSuNhap' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewLichSuNhap">
+    <Key>
+      <PropertyRef Name="MaPN" />
+    </Key>
+    <Property Name="MaPN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="DonGia" Type="float" />
+    <Property Name="ThanhTien" Type="float" />
+    <Property Name="NgayNhap" Type="date" />
+    <Property Name="TenNCC" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLXM.dbo.viewLichSuXuat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewLichSuXuat">
+    <Key>
+      <PropertyRef Name="MaPX" />
+    </Key>
+    <Property Name="MaPX" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="50" />
+    <Property Name="TenXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="MauSac" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoKhung" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoMay" Type="nvarchar" MaxLength="50" />
+    <Property Name="DonGia" Type="float" />
+    <Property Name="NgayXuat" Type="date" />
+  </EntityType>
+  <Association Name="FK_ChiTietPhieuNhap_PhieuNhap">
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="0..1" />
+    <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuNhap">
+        <PropertyRef Name="MaPN" />
+      </Principal>
+      <Dependent Role="ChiTietPhieuNhap">
+        <PropertyRef Name="MaPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietPhieuNhap_Xe">
+    <End Role="Xe" Type="Self.Xe" Multiplicity="0..1" />
+    <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="ChiTietPhieuNhap">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietPhieuXuat_PhieuXuat1">
+    <End Role="PhieuXuat" Type="Self.PhieuXuat" Multiplicity="0..1" />
+    <End Role="ChiTietPhieuXuat" Type="Self.ChiTietPhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuXuat">
+        <PropertyRef Name="MaPX" />
+      </Principal>
+      <Dependent Role="ChiTietPhieuXuat">
+        <PropertyRef Name="MaPX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietPhieuXuat_Xe">
+    <End Role="Xe" Type="Self.Xe" Multiplicity="0..1" />
+    <End Role="ChiTietPhieuXuat" Type="Self.ChiTietPhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="ChiTietPhieuXuat">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietXe_PhieuNhap">
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="0..1" />
+    <End Role="ChiTietXe" Type="Self.ChiTietXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuNhap">
+        <PropertyRef Name="MaPN" />
+      </Principal>
+      <Dependent Role="ChiTietXe">
+        <PropertyRef Name="MaPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietXe_PhieuXuat">
+    <End Role="PhieuXuat" Type="Self.PhieuXuat" Multiplicity="0..1" />
+    <End Role="ChiTietXe" Type="Self.ChiTietXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuXuat">
+        <PropertyRef Name="MaPX" />
+      </Principal>
+      <Dependent Role="ChiTietXe">
+        <PropertyRef Name="MaPX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietXe_Xe">
+    <End Role="Xe" Type="Self.Xe" Multiplicity="0..1" />
+    <End Role="ChiTietXe" Type="Self.ChiTietXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="ChiTietXe">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuNhap_NhaCungCap">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="0..1" />
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="MaNCC" />
+      </Principal>
+      <Dependent Role="PhieuNhap">
+        <PropertyRef Name="MaNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuNhap_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PhieuNhap">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuXuat_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="PhieuXuat" Type="Self.PhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="PhieuXuat">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuXuat_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="PhieuXuat" Type="Self.PhieuXuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PhieuXuat">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="timKiemLichSuBanHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="date" Mode="In" />
+    <Parameter Name="toDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="timKiemLichSuNhapHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="date" Mode="In" />
+    <Parameter Name="toDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="timkiemTonKho" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="hangXe" Type="nvarchar" Mode="In" />
+    <Parameter Name="loaiXe" Type="nvarchar" Mode="In" />
+    <Parameter Name="phanKhoi" Type="nvarchar" Mode="In" />
+    <Parameter Name="tenXe" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="QLXMModelStoreContainer">
+    <EntitySet Name="ChiTietPhieuNhap" EntityType="Self.ChiTietPhieuNhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietPhieuXuat" EntityType="Self.ChiTietPhieuXuat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietXe" EntityType="Self.ChiTietXe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DangNhap" EntityType="Self.DangNhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HangXe" EntityType="Self.HangXe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MauXe" EntityType="Self.MauXe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhaCungCap" EntityType="Self.NhaCungCap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuNhap" EntityType="Self.PhieuNhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuXuat" EntityType="Self.PhieuXuat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Xe" EntityType="Self.Xe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="viewLichSuNhap" EntityType="Self.viewLichSuNhap" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [viewLichSuNhap].[MaPN] AS [MaPN], 
+    [viewLichSuNhap].[TenXe] AS [TenXe], 
+    [viewLichSuNhap].[SoLuong] AS [SoLuong], 
+    [viewLichSuNhap].[DonGia] AS [DonGia], 
+    [viewLichSuNhap].[ThanhTien] AS [ThanhTien], 
+    [viewLichSuNhap].[NgayNhap] AS [NgayNhap], 
+    [viewLichSuNhap].[TenNCC] AS [TenNCC]
+    FROM [dbo].[viewLichSuNhap] AS [viewLichSuNhap]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="viewLichSuXuat" EntityType="Self.viewLichSuXuat" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [viewLichSuXuat].[MaPX] AS [MaPX], 
+    [viewLichSuXuat].[TenKH] AS [TenKH], 
+    [viewLichSuXuat].[TenXe] AS [TenXe], 
+    [viewLichSuXuat].[MauSac] AS [MauSac], 
+    [viewLichSuXuat].[SoKhung] AS [SoKhung], 
+    [viewLichSuXuat].[SoMay] AS [SoMay], 
+    [viewLichSuXuat].[DonGia] AS [DonGia], 
+    [viewLichSuXuat].[NgayXuat] AS [NgayXuat]
+    FROM [dbo].[viewLichSuXuat] AS [viewLichSuXuat]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ChiTietPhieuNhap_PhieuNhap" Association="Self.FK_ChiTietPhieuNhap_PhieuNhap">
+      <End Role="PhieuNhap" EntitySet="PhieuNhap" />
+      <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietPhieuNhap_Xe" Association="Self.FK_ChiTietPhieuNhap_Xe">
+      <End Role="Xe" EntitySet="Xe" />
+      <End Role="ChiTietPhieuNhap" EntitySet="ChiTietPhieuNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietPhieuXuat_PhieuXuat1" Association="Self.FK_ChiTietPhieuXuat_PhieuXuat1">
+      <End Role="PhieuXuat" EntitySet="PhieuXuat" />
+      <End Role="ChiTietPhieuXuat" EntitySet="ChiTietPhieuXuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietPhieuXuat_Xe" Association="Self.FK_ChiTietPhieuXuat_Xe">
+      <End Role="Xe" EntitySet="Xe" />
+      <End Role="ChiTietPhieuXuat" EntitySet="ChiTietPhieuXuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietXe_PhieuNhap" Association="Self.FK_ChiTietXe_PhieuNhap">
+      <End Role="PhieuNhap" EntitySet="PhieuNhap" />
+      <End Role="ChiTietXe" EntitySet="ChiTietXe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietXe_PhieuXuat" Association="Self.FK_ChiTietXe_PhieuXuat">
+      <End Role="PhieuXuat" EntitySet="PhieuXuat" />
+      <End Role="ChiTietXe" EntitySet="ChiTietXe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietXe_Xe" Association="Self.FK_ChiTietXe_Xe">
+      <End Role="Xe" EntitySet="Xe" />
+      <End Role="ChiTietXe" EntitySet="ChiTietXe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuNhap_NhaCungCap" Association="Self.FK_PhieuNhap_NhaCungCap">
+      <End Role="NhaCungCap" EntitySet="NhaCungCap" />
+      <End Role="PhieuNhap" EntitySet="PhieuNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuNhap_NhanVien" Association="Self.FK_PhieuNhap_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="PhieuNhap" EntitySet="PhieuNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuXuat_KhachHang" Association="Self.FK_PhieuXuat_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="PhieuXuat" EntitySet="PhieuXuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuXuat_NhanVien" Association="Self.FK_PhieuXuat_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="PhieuXuat" EntitySet="PhieuXuat" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
